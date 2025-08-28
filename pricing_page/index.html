@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripleAI Consulting - Pricing Packages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .company-logo {
+            background: linear-gradient(45deg, #00d4ff, #8a2be2, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-tagline {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 10px 20px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #00d4ff, #8a2be2, #ff6b6b);
+        }
+
+        .package-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .package-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .package-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .pricing {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9ff, #e8ecff);
+            border-radius: 15px;
+        }
+
+        .price-option {
+            margin: 15px 0;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #8a2be2;
+        }
+
+        .price-note {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .features {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            margin: 12px 0;
+            color: #555;
+        }
+
+        .feature::before {
+            content: '✓';
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+
+        .popular {
+            position: relative;
+            transform: scale(1.05);
+        }
+        .add-ons {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .add-ons::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+        }
+
+        .add-ons h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .add-on-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .add-on-item:last-child {
+            border-bottom: none;
+        }
+
+        .add-on-name {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .add-on-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8a2be2;
+        }
+
+        .add-on-note {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .cta-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #00d4ff, #8a2be2);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .company-logo {
+                font-size: 2.5rem;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .popular {
+                transform: none;
+            }
+            
+            .watermark {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">TripleAI Consulting</div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="company-logo">TripleAI Consulting</h1>
+            <p class="company-tagline">Intelligent AI Solutions for Modern Businesses</p>
+        </div>
+
+        <div class="packages-grid">
+            <!-- Lead Bot Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2 class="package-name">Lead Bot Package</h2>
+                    <p class="package-description">Smart lead generation bot with knowledge base integration and conversation tracking</p>
+                </div>
+                
+                <div class="pricing">
+                    <div class="price-option">
+                        <div class="price-label">One-time Purchase</div>
+                        <div class="price">€500</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="price-label">Monthly Subscription</div>
+                        <div class="price">€50<span style="font-size: 1rem;">/mo</span></div>
+                        <div class="price-note">3 months deposit required</div>
+                    </div>
+                </div>
+
+                <ul class="features">
+                    <li class="feature">Knowledge base integration</li>
+                    <li class="feature">Intelligent question answering</li>
+                    <li class="feature">Google Sheets conversation logging</li>
+                    <li class="feature">Lead capture and tracking</li>
+                    <li class="feature">WhatsApp chatbot included</li>
+                    <li class="feature">Sales team integration</li>
+                </ul>
+            </div>
+
+            <!-- Advanced Integration Package -->
+            <div class="package-card popular">
+                <div class="package-header">
+                    <h2 class="package-name">Advanced Integration</h2>
+                    <p class="package-description">Everything in Lead Bot plus external API integrations and advanced automation</p>
+                </div>
+                
+                <div class="pricing">
+                    <div class="price-option">
+                        <div class="price-label">One-time Purchase</div>
+                        <div class="price">€800</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="price-label">Monthly Subscription</div>
+                        <div class="price">€80<span style="font-size: 1rem;">/mo</span></div>
+                        <div class="price-note">3 months deposit required</div>
+                    </div>
+                </div>
+
+                <ul class="features">
+                    <li class="feature">All Lead Bot features</li>
+                    <li class="feature">External API integrations</li>
+                    <li class="feature">Meeting scheduling automation</li>
+                    <li class="feature">Order processing integration</li>
+                    <li class="feature">Custom software connections</li>
+                    <li class="feature">WhatsApp chatbot included</li>
+                    <li class="feature">Advanced workflow automation</li>
+                </ul>
+            </div>
+
+            <!-- Enterprise AI Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2 class="package-name">Enterprise AI Solution</h2>
+                    <p class="package-description">Complete AI solution with machine learning algorithms and advanced analytics</p>
+                </div>
+                
+                <div class="pricing">
+                    <div class="price-option">
+                        <div class="price-label">One-time Purchase</div>
+                        <div class="price">€1,500</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="price-label">Monthly Subscription</div>
+                        <div class="price">€150<span style="font-size: 1rem;">/mo</span></div>
+                        <div class="price-note">3 months deposit required</div>
+                    </div>
+                </div>
+
+                <ul class="features">
+                    <li class="feature">All previous package features</li>
+                    <li class="feature">Machine learning algorithms</li>
+                    <li class="feature">Product recommendation engine</li>
+                    <li class="feature">Advanced analytics & reporting</li>
+                    <li class="feature">Custom backend solutions</li>
+                    <li class="feature">WhatsApp chatbot included</li>
+                    <li class="feature">Predictive analytics</li>
+                    <li class="feature">Website included FREE</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="add-ons">
+            <h3>Additional Services</h3>
+            
+            <div class="add-on-item">
+                <div>
+                    <div class="add-on-name">Professional Website</div>
+                    <div class="add-on-note">Custom designed website for your business</div>
+                </div>
+                <div>
+                    <div class="add-on-price">€300</div>
+                    <div class="add-on-note">FREE with Enterprise package</div>
+                </div>
+            </div>
+            
+            <div class="add-on-item">
+                <div>
+                    <div class="add-on-name">Mobile Application</div>
+                    <div class="add-on-note">Native mobile app for iOS and Android</div>
+                </div>
+                <div>
+                    <div class="add-on-price">€800</div>
+                    <div class="add-on-note">Available for all packages</div>
+                </div>
+            </div>
+            
+            <div class="add-on-item">
+                <div>
+                    <div class="add-on-name">WhatsApp Chatbot</div>
+                    <div class="add-on-note">Automated WhatsApp business integration</div>
+                </div>
+                <div>
+                    <div class="add-on-price">Included</div>
+                    <div class="add-on-note">Free with all packages</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Transform Your Business?</h2>
+            <p class="cta-subtitle">Get started with TripleAI Consulting today and experience the power of intelligent automation</p>
+            <a href="mailto:TripleAIConsulting@gmail.com" class="cta-button">Get Started Now</a>
+        </div>
+    </div>
+</body>
+</html>

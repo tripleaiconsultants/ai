@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TripleAI Consultants</title>
+
+  <!-- Google Font: Gugi -->
+  <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="assets/logosmall.png" alt="Logo">
+      <span>TripleAI Consultants</span>
+    </div>
+    <nav class="navbar-right">
+      <a href="#services">Services</a>
+      <a href="Pricing_page/index.html">Pricing</a>
+      <a href="#contact">Contact Us</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero-background">
+    <div class="hero-content">
+      <h1 class="gradient-text">AI-Powered Business Growth.<br>Built in Cyprus.</h1>
+    </div>
+
+    <!-- Icons container -->
+    <div class="floating-icons">
+      <img src="assets/icons/whatsapp.png" alt="WhatsApp Icon" class="icon icon1">
+      <img src="assets/icons/browser.png" alt="Browser Icon" class="icon icon2">
+      <img src="assets/icons/coding.png" alt="Coding Icon" class="icon icon3">
+      <img src="assets/icons/calendar.png" alt="Calendar Icon" class="icon icon4">
+      <img src="assets/icons/data.png" alt="Data Icon" class="icon icon5">
+      <img src="assets/icons/email.png" alt="Email Icon" class="icon icon6">
+      <img src="assets/icons/chat.png" alt="Chat Icon" class="icon icon7">
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services-scroll-section">
+    <div class="services-wrapper">
+      <div class="service-slide active">
+        <div class="service-icon">
+          <img src="assets/services/chatbot.png" alt="Chatbot Icon">
+        </div>
+        <h2>Customer Service Chatbots</h2>
+        <p>We build AI-powered chatbots that handle customer queries 24/7, reduce response times, and improve satisfaction.</p>
+      </div>
+
+      <div class="service-slide">
+        <div class="service-icon">
+          <img src="assets/services/auto.png" alt="Automation Icon">
+        </div>
+        <h2>Automation</h2>
+        <p>From repetitive tasks to complex workflows, we automate processes to save time and boost efficiency.</p>
+      </div>
+
+      <div class="service-slide">
+        <div class="service-icon">
+          <img src="assets/services/web.png" alt="Web Dev Icon">
+        </div>
+        <h2>Web Development</h2>
+        <p>Modern, responsive, and fast websites tailored to your business, ensuring a seamless user experience.</p>
+      </div>
+
+      <div class="service-slide">
+        <div class="service-icon">
+          <img src="assets/services/swd.png" alt="Software Dev Icon">
+        </div>
+        <h2>Software Development</h2>
+        <p>Custom software solutions designed to scale with your business, built with precision and reliability.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const section = document.querySelector(".services-scroll-section");
+      const slides = document.querySelectorAll(".service-slide");
+      const totalSlides = slides.length;
+
+      window.addEventListener("scroll", () => {
+        const rect = section.getBoundingClientRect();
+
+        // calculate scroll progress through the section
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+          const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
+          const activeIndex = Math.min(
+            Math.floor(progress * totalSlides),
+            totalSlides - 1
+          );
+
+          slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === activeIndex);
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
